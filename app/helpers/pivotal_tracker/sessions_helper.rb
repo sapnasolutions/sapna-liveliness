@@ -1,0 +1,2 @@
+module PivotalTracker::SessionsHelper
+end

@@ -1,0 +1,11 @@
+<li class="member">
+  <%= 
+    link_to_remote h(member.name), 
+    :url => {:controller => :reports, :action => :new, :project_id => @project.id, :member_id => member.id}, 
+    :class => "member_link",
+    :loading => "$('project_spinner_#{@project.id}_member_#{member.id}').toggle(); $('pivotal_project_#{@project.id}_member_#{member.id}').toggle()", 
+    :complete => "$('project_spinner_#{@project.id}_member_#{member.id}').toggle(); $('pivotal_project_#{@project.id}_member_#{member.id}').toggle()", 
+    :method => :get, 
+    :html => {:id => "pivotal_project_#{@project.id}_member_#{member.id}"} %><%= image_tag "indicators/small.gif", :id => "project_spinner_#{@project.id}_member_#{member.id}", :style => "display:none;" 
+  %>
+</li>

@@ -1,0 +1,33 @@
+<ul id="pivotal_tracker_menu" class="pivotal_menu">
+  <% if session[:pivotal_tracker_token] %>
+    <li>Welcome <%= h(session[:pivotal_tracker_username]) %></li>
+    <li>|</li>
+    <li id="pivotal_menu_projects">
+      <%= link_to_remote "Projects", 
+        :url => pivotal_tracker_projects_path,
+        :loading => "$('pivotal-content').toggle(); $('projects_menu_spinner').toggle(); $('pivotal_projects_menu_link').toggle()", 
+        :complete => "$('pivotal-content').toggle(); $('projects_menu_spinner').toggle(); $('pivotal_projects_menu_link').toggle()", 
+        :method => :get, 
+        :html => {:id => "pivotal_projects_menu_link"} %><%= image_tag "indicators/small.gif", :id => "projects_menu_spinner", :style => "display:none;" %></li>
+    <li>|</li>
+    <li id="pivotal_menu_logout">
+      <%= link_to_remote "Logout", 
+        :url => pivotal_tracker_sessions_path,
+        :loading => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
+        :complete => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
+        :method => :delete, 
+        :html => {:id => "pivotal_logout_menu_link"} %><%= image_tag "indicators/small.gif", :id => "pivotal_logout_spinner", :style => "display:none;" %>
+    </li>
+  <% else %>
+    <li id="pivotal_menu_login">
+      <%= link_to_remote "Login", 
+        :url => new_pivotal_tracker_session_path,
+        :loading => "$('pivotal_login_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
+        :complete => "$('pivotal_login_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
+        :method => :get, 
+        :html => {:id => "pivotal_login_menu_link"} %><%= image_tag "indicators/small.gif", :id => "pivotal_login_spinner", :style => "display:none;" %>
+      
+    </li>
+  <% end %>
+</ul>
+<div class="clear"></div>

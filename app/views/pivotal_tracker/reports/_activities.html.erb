@@ -1,0 +1,4 @@
+<h2>Activities of '<%= @project.name %>' project</h2>
+<ul>
+  <%= render :partial => "pivotal_tracker/reports/activity", :collection => @activities %>
+</ul>

@@ -1,0 +1,11 @@
+<li class="project">
+  <%= 
+    link_to_remote h(project.name), 
+    :url => pivotal_tracker_project_members_path(project),
+    :class => "project_link",
+    :loading => "$('project_spinner_#{project.id}').toggle(); $('pivotal_project_#{project.id}').toggle()", 
+    :complete => "$('project_spinner_#{project.id}').toggle(); $('pivotal_project_#{project.id}').toggle()", 
+    :method => :get, 
+    :html => {:id => "pivotal_project_#{project.id}"} %><%= image_tag "indicators/small.gif", :id => "project_spinner_#{project.id}", :style => "display:none;" 
+  %>
+</li>

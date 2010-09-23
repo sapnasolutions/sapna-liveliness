@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+body {
+  color: #000;
+  background: #fff;
+  font-size: 12px; }
+
+a {
+  color: #f00;
+  text-decoration: none;
+  padding-left: 3px;
+  padding-right: 3px; }
+  a:hover {
+    color: #fff;
+    background: #f00; }
+
+#header #main-header{
+  width: 335px;
+  margin: auto;
+  font-family: "Trebuchet MS"; 
+}
+#main-header h1 {
+  padding-top: 20px;
+  font-size: 600%; 
+}
+
+#header #main-header h1 a {
+  color: #000; 
+}
+
+#header #main-header h1 a:hover {
+  color: #000;
+  background: #fff; 
+}
+
+#header #main-header h4 {
+  font-size: 100%;
+  color: red;
+  position: relative;
+  top: -70px;
+  left: 305px; 
+}
+
+.messages {
+  font-size: 200%;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.messages.error {
+  background: #f00; }
+
+.messages.notice {
+  background: #009316; }
+
+.messages.padding {
+  padding: 20px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.clear {
+  clear: both; }
+
+#main-content{
+  margin:auto;
+  width: 900px;
+}
+
+.pivotal_menu{
+  float: right;
+  padding: 5px;
+}
+.pivotal_menu li{
+  float: left;
+  margin: 5px;
+  list-style: none;
+}
+
+.box {
+  width: 449px;
+  min-height: 600px;
+}
+.box.left {
+  border-right: 1px solid #ddd; 
+}
+
+.form-content{
+  margin: auto;
+}
+
+#pivotal-content, #github-content{
+  padding: 20px;
+}
+
+#pivotal-content li, #github-content li{
+  list-style: none;
+  list-style-type: none;
+}
+
+#pivotal-content h2, #github-content h2{
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.login-form h1, report-form h1{
+  text-align: center;
+}
+
+.login-form{
+  width: 270px;
+  margin:auto;
+  border: 5px solid #ddd;
+  padding: 10px;
+}
+
+.report-form{
+  margin:auto;
+  border: 5px solid #ddd;
+  padding: 10px;
+}
+
+.login-form div{
+  margin-top: 10px;
+}
+
+.report-form div{
+  margin-top: 20px;
+}
+
+.login-form .form-content{
+  width: 225px;
+}
+
+.login-form .form-content input, .report-form .form-content input{
+  float: right;
+}

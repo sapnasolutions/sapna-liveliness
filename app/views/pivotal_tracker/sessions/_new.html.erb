@@ -1,0 +1,17 @@
+<div class="login-form">
+  <h1>Pivotal Tracker - Login</h1>
+  <% form_remote_tag :url => pivotal_tracker_sessions_path do %>
+    <div class="form-content">
+      <div>
+        <%= label :pivotal_tracker, :login %>
+        <%= text_field_tag "pivotal_tracker[login]" %>
+      </div>
+      <div>
+        <%= label :pivotal_tracker, :password %>
+        <%= password_field_tag "pivotal_tracker[password]" %>
+      <div>
+      <div><%= submit_tag "Login", :disable_with => "Please wait..." %></div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</div>

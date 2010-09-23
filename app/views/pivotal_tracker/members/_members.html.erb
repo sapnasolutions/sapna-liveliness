@@ -1,0 +1,4 @@
+<h2>Project '<%=h @project.name %>': members</h2>
+<ul>
+  <%= render :partial => "pivotal_tracker/members/member", :collection => @members %>
+</ul>

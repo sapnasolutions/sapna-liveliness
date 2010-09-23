@@ -1,0 +1,18 @@
+<div class="report-form">
+  <h1>Pivotal Tracker - Activity Report</h1>
+  <% form_remote_tag :url => {:controller => :reports, :action => :create}, :method => :post do %>
+    <%= hidden_field_tag "pivotal_tracker_member_id", params[:member_id] %>
+    <div class="form-content">
+      <div>
+        <%= label :pivotal_tracker_report, :from %>
+        <%= text_field_tag "report[from]", "", :class => "datepicker" %>
+      </div>
+      <div>
+        <%= label :pivotal_tracker_report, :to %>
+        <%= text_field_tag "report[to]", "", :class => "datepicker" %>
+      <div>
+      <div><%= submit_tag "Generate", :disable_with => "Please wait..." %></div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</div>
