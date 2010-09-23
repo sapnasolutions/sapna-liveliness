@@ -50,7 +50,7 @@ class Report
   end
   
   def filter_activities(list, member)
-    return list.select{|x| x.author = member.name}
+    return list.select{|x| x.author == member.name}
   end
   
   def get_date_from_string(date)

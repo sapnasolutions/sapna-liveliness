@@ -12,7 +12,7 @@
     <li>|</li>
     <li id="pivotal_menu_logout">
       <%= link_to_remote "Logout", 
-        :url => pivotal_tracker_sessions_path,
+        :url => pivotal_tracker_session_path(1),
         :loading => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
         :complete => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
         :method => :delete, 

@@ -14,7 +14,7 @@ class PivotalTracker::SessionsController < PivotalTracker::BaseController
       if token.present?
         session[:pivotal_tracker_token] = token
         session[:pivotal_tracker_username] = params[:pivotal_tracker][:login] if token
-        render :partial => "pivotal_tracker/projects", :locals => { :projects => load_projects(token) }, :layout => false
+        render :partial => "pivotal_tracker/projects/projects", :locals => { :projects => load_projects(token) }, :layout => false
       else
       end
     end
@@ -22,7 +22,10 @@ class PivotalTracker::SessionsController < PivotalTracker::BaseController
   
   def destroy
     session[:pivotal_tracker_token], session[:pivotal_tracker_username] = nil
-    redirect_to root_path
+    render :update do |page|
+      page.redirect_to root_path
+    end
+    
   end
   
   private
