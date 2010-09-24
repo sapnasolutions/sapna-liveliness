@@ -1,4 +1,16 @@
 <h2>Activities of '<%= @project.name %>' project</h2>
-<ul>
-  <%= render :partial => "pivotal_tracker/reports/activity", :collection => @activities %>
-</ul>
+<% if @activities.present?%>
+  <ul>
+    <%= render :partial => "pivotal_tracker/reports/activity", :collection => @activities %>
+  </ul>
+<% else %>
+  <ul><li>No activities for the selected period. To modify the report criteria, <%= 
+    link_to_remote "click here", 
+    :url => {:controller => :reports, :action => :new, :project_id => @project.id, :member_id => @member_id}, 
+    :class => "member_link",
+    :loading => "$('project_spinner_#{@project.id}_member_#{@member_id}').toggle(); $('pivotal_project_#{@project.id}_member_#{@member_id}').toggle()", 
+    :complete => "$('project_spinner_#{@project.id}_member_#{@member_id}').toggle(); $('pivotal_project_#{@project.id}_member_#{@member_id}').toggle()", 
+    :method => :get, 
+    :html => {:id => "pivotal_project_#{@project.id}_member_#{@member_id}"} %><%= image_tag "indicators/small.gif", :id => "project_spinner_#{@project.id}_member_#{@member_id}", :style => "display:none;" 
+  %>.</li></ul>
+<% end %>
