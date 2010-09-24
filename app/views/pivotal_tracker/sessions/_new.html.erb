@@ -1,16 +1,21 @@
 <div class="login-form">
   <h1>Pivotal Tracker - Login</h1>
-  <% form_remote_tag :url => pivotal_tracker_sessions_path do %>
+  <% form_remote_tag :url => pivotal_tracker_sessions_path, :loading => "$('pivotal_login_spinner').show(); $('pivotal_login_submit').hide();", :complete => "$('pivotal_login_spinner').hide(); $('pivotal_login_submit').show();" do %>
     <div class="form-content">
       <div>
         <%= label :pivotal_tracker, :login %>
         <%= text_field_tag "pivotal_tracker[login]" %>
+        <div class="clear"></div>
       </div>
       <div>
         <%= label :pivotal_tracker, :password %>
         <%= password_field_tag "pivotal_tracker[password]" %>
+        <div class="clear"></div>
       <div>
-      <div><%= submit_tag "Login", :disable_with => "Please wait..." %></div>
+      <div>
+        <%= submit_tag "Login", :id => "pivotal_login_submit" %>
+        <%= image_tag "indicators/small.gif", :id => "pivotal_login_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
+      </div>
       <div class="clear"></div>
     </div>
   <% end %>

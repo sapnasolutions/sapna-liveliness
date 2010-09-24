@@ -22,10 +22,10 @@
     <li id="pivotal_menu_login">
       <%= link_to_remote "Login", 
         :url => new_pivotal_tracker_session_path,
-        :loading => "$('pivotal_login_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
-        :complete => "$('pivotal_login_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
+        :loading => "$('pivotal_login_link_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
+        :complete => "$('pivotal_login_link_spinner').toggle(); $('pivotal_login_menu_link').toggle()", 
         :method => :get, 
-        :html => {:id => "pivotal_login_menu_link"} %><%= image_tag "indicators/small.gif", :id => "pivotal_login_spinner", :style => "display:none;" %>
+        :html => {:id => "pivotal_login_menu_link"} %><%= image_tag "indicators/small.gif", :id => "pivotal_login_link_spinner", :style => "display:none;" %>
       
     </li>
   <% end %>

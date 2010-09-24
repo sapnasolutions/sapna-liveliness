@@ -44,12 +44,15 @@ a {
 }
 
 .messages {
-  font-size: 200%;
+  font-size: 21px;
   font-weight: bold;
   color: #fff;
   position: absolute;
   top: 0;
-  left: 0; }
+  left: 0;
+  width: 100%;
+  text-align:center;
+}
 
 .messages.error {
   background: #f00; }
