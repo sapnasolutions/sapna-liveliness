@@ -1,12 +1,22 @@
 <ul id="pivotal_tracker_menu" class="pivotal_menu">
   <% if session[:pivotal_tracker_token] %>
-    <li>Welcome <%= h(session[:pivotal_tracker_username]) %></li>
+    <li class="max-width-200"><%= h(session[:pivotal_tracker_username]) %></li>
     <li>|</li>
+    <% if session[:pivotal_tracker_project_name].present? %>
+      <li class="max-width-75" id="pivotal_menu_projects_<%= session[:pivotal_tracker_project_id] %>">
+        <%= link_to_remote h(session[:pivotal_tracker_project_name]), 
+          :url => pivotal_tracker_project_members_path(session[:pivotal_tracker_project_id]),
+          :loading => "$('pivotal-content').toggle(); $('project_#{session[:pivotal_tracker_project_id]}_menu_spinner').show(); $('pivotal_project_#{session[:pivotal_tracker_project_id]}_menu_link').hide()", 
+          :complete => "$('pivotal-content').toggle(); $('project_#{session[:pivotal_tracker_project_id]}_menu_spinner').hide(); $('pivotal_project_#{session[:pivotal_tracker_project_id]}_menu_link').show()", 
+          :method => :get, 
+          :html => {:id => "pivotal_project_#{session[:pivotal_tracker_project_id]}_menu_link"} %><%= image_tag "indicators/small.gif", :id => "project_#{session[:pivotal_tracker_project_id]}_menu_spinner", :style => "display:none;" %></li>
+      <li>|</li>
+    <% end %>
     <li id="pivotal_menu_projects">
       <%= link_to_remote "Projects", 
         :url => pivotal_tracker_projects_path,
-        :loading => "$('pivotal-content').toggle(); $('projects_menu_spinner').toggle(); $('pivotal_projects_menu_link').toggle()", 
-        :complete => "$('pivotal-content').toggle(); $('projects_menu_spinner').toggle(); $('pivotal_projects_menu_link').toggle()", 
+        :loading => "$('pivotal-content').toggle(); $('projects_menu_spinner').show(); $('pivotal_projects_menu_link').hide()", 
+        :complete => "$('pivotal-content').toggle(); $('projects_menu_spinner').hide(); $('pivotal_projects_menu_link').show()", 
         :method => :get, 
         :html => {:id => "pivotal_projects_menu_link"} %><%= image_tag "indicators/small.gif", :id => "projects_menu_spinner", :style => "display:none;" %></li>
     <li>|</li>

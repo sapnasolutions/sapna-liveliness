@@ -77,11 +77,11 @@ a {
   width: 900px;
 }
 
-.pivotal_menu{
+.pivotal_menu, .github_menu{
   float: right;
   padding: 5px;
 }
-.pivotal_menu li{
+.pivotal_menu li, .github_menu li{
   float: left;
   margin: 5px;
   list-style: none;
@@ -144,4 +144,22 @@ a {
 
 .login-form .form-content input, .report-form .form-content input{
   float: right;
+}
+
+.max-width-200{
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.max-width-75{
+  max-width: 75px;
+  overflow: hidden;
+}
+
+.margin-right-5{
+  margin-right: 5px;
+}
+
+.margin-bottom-20{
+  margin-bottom:20px;
 }

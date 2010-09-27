@@ -1,4 +1,44 @@
 <ul id="github_menu" class="github_menu">
- 
+  <% if session[:github_token] %>
+    <li class="max-width-200"><%= h(session[:github_username]) %></li>
+    <li>|</li>
+    <%# if session[:github_project_name].present? %>
+      <!--li class="max-width-75" id="github_menu_projects_<%= session[:github_project_id] %>">
+        <%#= link_to_remote h(session[:github_project_name]), 
+          :url => github_project_members_path(session[:github_project_id]),
+          :loading => "$('github-content').toggle(); $('project_#{session[:github_project_id]}_menu_spinner').show(); $('github_project_#{session[:github_project_id]}_menu_link').hide()", 
+          :complete => "$('github-content').toggle(); $('project_#{session[:github_project_id]}_menu_spinner').hide(); $('github_project_#{session[:github_project_id]}_menu_link').show()", 
+          :method => :get, 
+          :html => {:id => "github_project_#{session[:github_project_id]}_menu_link"} %><%= image_tag "indicators/small.gif", :id => "project_#{session[:github_project_id]}_menu_spinner", :style => "display:none;" %></li>
+      <li>|</li-->
+    <%# end %>
+    <li id="github_menu_projects">
+      <%= link_to "Projects", "#"%>
+      <%#= link_to_remote "Projects","#",
+        :url => github_projects_path,
+        :loading => "$('github-content').toggle(); $('projects_menu_spinner').show(); $('github_projects_menu_link').hide()", 
+        :complete => "$('github-content').toggle(); $('projects_menu_spinner').hide(); $('github_projects_menu_link').show()", 
+        :method => :get, 
+        :html => {:id => "github_projects_menu_link"} %><%= image_tag "indicators/small.gif", :id => "projects_menu_spinner", :style => "display:none;" %></li>
+    <li>|</li>
+    <li id="github_menu_logout">
+      <%= link_to_remote "Logout", 
+        :url => github_session_path(1),
+        :loading => "$('github-content').toggle(); $('github_logout_spinner').toggle(); $('github_logout_menu_link').toggle()", 
+        :complete => "$('github-content').toggle(); $('github_logout_spinner').toggle(); $('github_logout_menu_link').toggle()", 
+        :method => :delete, 
+        :html => {:id => "github_logout_menu_link"} %><%= image_tag "indicators/small.gif", :id => "github_logout_spinner", :style => "display:none;" %>
+    </li>
+  <% else %>
+    <li id="github_menu_login">
+      <%= link_to_remote "Login", 
+        :url => new_github_session_path,
+        :loading => "$('github_login_link_spinner').toggle(); $('github_login_menu_link').toggle()", 
+        :complete => "$('github_login_link_spinner').toggle(); $('github_login_menu_link').toggle()", 
+        :method => :get, 
+        :html => {:id => "github_login_menu_link"} %><%= image_tag "indicators/small.gif", :id => "github_login_link_spinner", :style => "display:none;" %>
+      
+    </li>
+  <% end %>
 </ul>
 <div class="clear"></div>

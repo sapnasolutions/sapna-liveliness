@@ -1,4 +1,26 @@
-<h2>Project '<%=h @project.name %>': members</h2>
-<ul>
-  <%= render :partial => "pivotal_tracker/members/member", :collection => @members %>
-</ul>
+<div class="report-form">
+  <% form_remote_tag :url => pivotal_tracker_reports_path, :method => :post, :loading => "$('pivotal_report_submit').hide(); $('pivotal_report_spinner').show();", :complete => "$('pivotal_report_submit').show(); $('pivotal_report_spinner').hide();" do %>
+    <div class="margin-bottom-20">
+      <h2>Project '<%=h @project.name %>': members</h2>
+      <ul>
+        <%= render :partial => "/pivotal_tracker/members/member", :collection => @members %>
+      </ul>
+    </div>
+    <h2>Report Range</h2>
+    <div class="form-content">
+      <div>
+        <%= label :pivotal_tracker_report, :from %>
+        <%= text_field_tag "report[from]", "", :class => "datepicker" %>
+      </div>
+      <div>
+        <%= label :pivotal_tracker_report, :to %>
+        <%= text_field_tag "report[to]", "", :class => "datepicker" %>
+      <div>
+      <div>
+        <%= submit_tag "Generate", :id => "pivotal_report_submit" %>
+        <%= image_tag "indicators/small.gif", :id => "pivotal_report_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</div>

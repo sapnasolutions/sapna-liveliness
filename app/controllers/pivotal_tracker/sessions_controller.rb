@@ -25,7 +25,11 @@ class PivotalTracker::SessionsController < PivotalTracker::BaseController
   end
   
   def destroy
-    session[:pivotal_tracker_token], session[:pivotal_tracker_username] = nil
+    session[:pivotal_tracker_member_id], 
+    session[:pivotal_tracker_token], 
+    session[:pivotal_tracker_username], 
+    session[:pivotal_tracker_project_id], 
+    session[:pivotal_tracker_project_name] = nil
     render :update do |page|
       page.replace "pivotal_tracker_menu", :partial => "pivotal_tracker/menu"
       page.replace_html "messages", :partial => "/layouts/messages"

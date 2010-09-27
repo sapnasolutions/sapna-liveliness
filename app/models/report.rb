@@ -12,9 +12,9 @@ class Report
   def generate
     (start_date, end_date) = check_date_interval
     project = get_project
-    member = get_member(project)
+    members = get_members(project)
     activities = get_activities(start_date, end_date, project)
-    filtered_activities = filter_activities(activities, member)
+    filtered_activities = filter_activities(activities, members)
   end
   
   private
@@ -30,9 +30,9 @@ class Report
     return project
   end
   
-  def get_member(project)
-    member = project.memberships.select{|x| x.id == @params[:pivotal_tracker_member_id]}.first
-    return member
+  def get_members(project)
+    members = project.memberships.select{|x| @params[:pivotal_tracker][:users].include?(x.id.to_s)}
+    return members
   end
   
   def get_activity_for(project, date)
@@ -49,8 +49,9 @@ class Report
     return activities
   end
   
-  def filter_activities(list, member)
-    return list.select{|x| x.author == member.name}
+  def filter_activities(list, members)
+    member_names = members.collect(&:name)
+    return list.select{|x| member_names.include?(x.author)}
   end
   
   def get_date_from_string(date)

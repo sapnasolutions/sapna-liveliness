@@ -1,0 +1,22 @@
+<div class="login-form">
+  <h1>Github - Login</h1>
+  <% form_remote_tag :url => github_sessions_path, :loading => "$('github_login_spinner').show(); $('github_login_submit').hide();", :complete => "$('github_login_spinner').hide(); $('github_login_submit').show();" do %>
+    <div class="form-content">
+      <div>
+        <%= label :github, :login %>
+        <%= text_field_tag "github[login]" %>
+        <div class="clear"></div>
+      </div>
+      <div>
+        <%= label :github, "API Token" %>
+        <%= password_field_tag "github[password]" %>
+        <div class="clear"></div>
+      <div>
+      <div>
+        <%= submit_tag "Login", :id => "github_login_submit" %>
+        <%= image_tag "indicators/small.gif", :id => "github_login_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</div>
