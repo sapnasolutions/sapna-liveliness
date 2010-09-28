@@ -1,0 +1,10 @@
+<div class="<%= type %>_wrapper">  
+  <div class="<%= type %>">
+    <h2>Your <%= type %></h2>
+    <ul>
+      <%= body %>
+    </ul>
+    Click on one of the projects to see its <%= children %>...
+  </div>
+  <%= indicator :size => :big, :class => "big_indicator", :message => "loading #{children} ..." %><br />
+</div>

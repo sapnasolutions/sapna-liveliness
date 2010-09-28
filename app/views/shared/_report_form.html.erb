@@ -1,0 +1,16 @@
+<h2>Report Range</h2>
+<div class="form-content">
+  <div>
+    <%= label report_for, :from %>
+    <%= text_field_tag "report[from]", "", :class => "datepicker" %>
+  </div>
+  <div>
+    <%= label report_for, :to %>
+    <%= text_field_tag "report[to]", "", :class => "datepicker" %>
+  <div>
+  <div>
+    <%= submit_tag "Generate", :id => "#{report_for}_report_submit" %>
+    <%= image_tag "indicators/small.gif", :id => "#{report_for}_report_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
+  </div>
+  <div class="clear"></div>
+</div>

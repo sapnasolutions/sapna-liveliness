@@ -9,7 +9,7 @@ class PivotalTracker::MembersController < PivotalTracker::BaseController
     @members = @project.memberships
     render :update do |page|
       page.replace_html("pivotal-content", render(:partial => "/pivotal_tracker/members/members"))
-      page.replace_html("pivotal_tracker_menu", render(:partial => "/pivotal_tracker/menu"))
+      page.replace("pivotal_tracker_menu", render(:partial => "/pivotal_tracker/menu"))
       page.call("createPickers")
     end
   end

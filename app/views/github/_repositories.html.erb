@@ -1,0 +1,10 @@
+<% repositories_wrapper do %>
+  <% repositories.each do |repository| %>
+    <li class="repository">
+      <%= link_to_remote repository.name, :url => collaborators_github_repository_path(:id => repository.name), :method => :get,
+        :loading => "$('repository_#{repository.id}_spinner').show(); $('repository_#{repository.id}_link').hide()", 
+        :complete => "$('repository_#{repository.id}_spinner').hide(); $('repository_#{repository.id}_link').show()", :html => {:id => "repository_#{repository.id}_link", :class => "repository_link"} %>
+      <%= image_tag "indicators/small.gif", :id => "repository_#{repository.id}_spinner", :style => "display:none;" %>
+    </li>
+  <% end %>
+<% end %>

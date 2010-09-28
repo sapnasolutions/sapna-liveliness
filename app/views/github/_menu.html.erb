@@ -1,31 +1,30 @@
 <ul id="github_menu" class="github_menu">
-  <% if session[:github_token] %>
-    <li class="max-width-200"><%= h(session[:github_username]) %></li>
+  <% if session[:github_credentials] %>
+    <li class="max-width-200"><%= h(session[:github_credentials][:login].capitalize) %></li>
     <li>|</li>
-    <%# if session[:github_project_name].present? %>
-      <!--li class="max-width-75" id="github_menu_projects_<%= session[:github_project_id] %>">
-        <%#= link_to_remote h(session[:github_project_name]), 
-          :url => github_project_members_path(session[:github_project_id]),
-          :loading => "$('github-content').toggle(); $('project_#{session[:github_project_id]}_menu_spinner').show(); $('github_project_#{session[:github_project_id]}_menu_link').hide()", 
-          :complete => "$('github-content').toggle(); $('project_#{session[:github_project_id]}_menu_spinner').hide(); $('github_project_#{session[:github_project_id]}_menu_link').show()", 
+    <% if session[:github_repository_name].present? %>
+      <li class="max-width-75" id="github_menu_repository_<%= session[:github_repository_name] %>">
+        <%= link_to_remote h(session[:github_repository_name]), 
+          :url => collaborators_github_repository_path(:id => session[:github_repository_name]),
+          :loading => "$('github-content').toggle(); $('repository_#{session[:github_repository_name]}_menu_spinner').show(); $('repository_#{session[:github_repository_name]}_menu_link').hide()", 
+          :complete => "$('github-content').toggle(); $('repository_#{session[:github_repository_name]}_menu_spinner').hide(); $('repository_#{session[:github_repository_name]}_menu_link').show()", 
           :method => :get, 
-          :html => {:id => "github_project_#{session[:github_project_id]}_menu_link"} %><%= image_tag "indicators/small.gif", :id => "project_#{session[:github_project_id]}_menu_spinner", :style => "display:none;" %></li>
-      <li>|</li-->
-    <%# end %>
+          :html => {:id => "repository_#{session[:github_repository_name]}_menu_link"} %><%= image_tag "indicators/small.gif", :id => "repository_#{session[:github_repository_name]}_menu_spinner", :style => "display:none;" %></li>
+      <li>|</li>
+    <% end %>
     <li id="github_menu_projects">
-      <%= link_to "Projects", "#"%>
-      <%#= link_to_remote "Projects","#",
-        :url => github_projects_path,
-        :loading => "$('github-content').toggle(); $('projects_menu_spinner').show(); $('github_projects_menu_link').hide()", 
-        :complete => "$('github-content').toggle(); $('projects_menu_spinner').hide(); $('github_projects_menu_link').show()", 
-        :method => :get, 
-        :html => {:id => "github_projects_menu_link"} %><%= image_tag "indicators/small.gif", :id => "projects_menu_spinner", :style => "display:none;" %></li>
+      <%= link_to_remote "Projects", :url => github_repositories_path, :method => :get, 
+        :loading => "$('github-content').toggle(); $('github_projects_menu_spinner').show(); $('github_projects_menu_link').hide()", 
+        :complete => "$('github-content').toggle(); $('github_projects_menu_spinner').hide(); $('github_projects_menu_link').show()",
+        :html => {:id => "github_projects_menu_link"} %>
+      <%= image_tag "indicators/small.gif", :id => "github_projects_menu_spinner", :style => "display:none;" %>
+    </li>
     <li>|</li>
     <li id="github_menu_logout">
       <%= link_to_remote "Logout", 
         :url => github_session_path(1),
-        :loading => "$('github-content').toggle(); $('github_logout_spinner').toggle(); $('github_logout_menu_link').toggle()", 
-        :complete => "$('github-content').toggle(); $('github_logout_spinner').toggle(); $('github_logout_menu_link').toggle()", 
+        :loading => "$('github-content').toggle(); $('github_logout_spinner').show(); $('github_logout_menu_link').hide()", 
+        :complete => "$('github-content').toggle(); $('github_logout_spinner').hide(); $('github_logout_menu_link').show()", 
         :method => :delete, 
         :html => {:id => "github_logout_menu_link"} %><%= image_tag "indicators/small.gif", :id => "github_logout_spinner", :style => "display:none;" %>
     </li>
@@ -33,8 +32,8 @@
     <li id="github_menu_login">
       <%= link_to_remote "Login", 
         :url => new_github_session_path,
-        :loading => "$('github_login_link_spinner').toggle(); $('github_login_menu_link').toggle()", 
-        :complete => "$('github_login_link_spinner').toggle(); $('github_login_menu_link').toggle()", 
+        :loading => "$('github_login_link_spinner').show(); $('github_login_menu_link').hide()", 
+        :complete => "$('github_login_link_spinner').hide(); $('github_login_menu_link').show()", 
         :method => :get, 
         :html => {:id => "github_login_menu_link"} %><%= image_tag "indicators/small.gif", :id => "github_login_link_spinner", :style => "display:none;" %>
       

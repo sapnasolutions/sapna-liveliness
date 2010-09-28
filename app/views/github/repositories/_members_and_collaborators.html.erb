@@ -1,0 +1,10 @@
+<div class="<%= type %>_wrapper"> 
+  <div class="<%= type %>">
+    
+    <%= body %>
+
+    Click on one of the <%= parent %>'s <%= type %> to continue...
+  </div>
+  <%= indicator :size => :big, :class => "big_indicator", :message => "loading dates ..." %>
+  <%= indicator :size => :big, :class => "big_indicator_#{parent}", :message => "loading #{parent} ..." %>
+</div>

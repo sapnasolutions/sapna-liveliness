@@ -7,18 +7,14 @@ ActionController::Routing::Routes.draw do |map|
       project.resources :members, :only => [:index]
     end
   end
+  
+  
   map.namespace :github do |github|
     github.resources :sessions, :only => [:new, :create, :destroy]
-    
+    github.resources :repositories, :only => [:index], :member => {:collaborators => :get}
+    github.resources :reports, :only => [:create]
+    github.collaborators_github_repository 'repositories/:id/collaborators', :controller => "repositories",  :action => "collaborators" 
   end
-  map.connect '/projects/:project_id/members/:member_id/reports', 
-    :controller => "pivotal_tracker/reports",
-    :action     => :new,
-    :conditions => {:method => :get}
-    map.connect '/projects/:project_id/members/:member_id/reports', 
-      :controller => "pivotal_tracker/reports",
-      :action     => :create,
-      :conditions => {:method => :post}
-  
+      
   map.root :controller => :home
 end
