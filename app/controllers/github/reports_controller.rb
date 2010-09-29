@@ -1,23 +1,20 @@
-require 'github/repository'
 class Github::ReportsController < Github::BaseController
   before_filter :login_required?
   before_filter :unless_repository?
   before_filter :load_repository
   
   def create
-    report = Report.new(params, session)
-    @activities = report.generate
-    @member_id  = params[:pivotal_tracker_member_id]
+    @commits = @repository.generate_report(params)
     respond_to do |format|
       format.js do
         render :update do |page|
-          page.replace_html("pivotal-content", render(:partial => "pivotal_tracker/reports/activities"))
-          page.insert_html(:top, "pivotal-content", 
-            content_tag(:div, :class => "right", :id => "pivotal_export_report") do 
-              button_to("Export to XLS", "/pivotal_tracker/report", :method => :post, :format => "xls", :params => params, :remote => true, :disable_with => "Please wait...") 
-            end
-          )
-          page.insert_html(:after, "pivotal_export_report", content_tag(:div, '', :class => "clear"))
+          page.replace_html("github-content", render(:partial => "github/reports/commits"))
+          # page.insert_html(:top, "pivotal-content", 
+          #             content_tag(:div, :class => "right", :id => "pivotal_export_report") do 
+          #               button_to("Export to XLS", "/pivotal_tracker/report", :method => :post, :format => "xls", :params => params, :remote => true, :disable_with => "Please wait...") 
+          #             end
+          #           )
+          # page.insert_html(:after, "pivotal_export_report", content_tag(:div, '', :class => "clear"))
         end
       end
       format.xls do

@@ -40,4 +40,13 @@ class Github::BaseController < ApplicationController
     end
   end
   
+  def unless_repository?
+    unless params[:id]
+      flash.now[:error] = "No repositories found!"
+      render :update do |page|
+        page.replace_html(:messages, :partial => "/layouts/messages")
+      end
+    end
+  end
+  
 end

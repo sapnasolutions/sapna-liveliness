@@ -1,0 +1,7 @@
+<% if @commits.present? %>
+  <ul>
+    <%= render :partial => "github/reports/commit", :collection => @commits %>
+  </ul>
+<% else %>
+  <div>No results for the selected criteria.</div>
+<% end %>

@@ -3,10 +3,17 @@
     :method => :post, 
     :loading => "$('github_report_submit').hide(); $('github_report_spinner').show();", 
     :complete => "$('github_report_submit').show(); $('github_report_spinner').hide();" do %>
+    <%= hidden_field_tag "id", repository.name %>
     <div class="margin-bottom-20">
       <h2>Project '<%=h repository.name %>': collaborators</h2>
       <ul>
         <%= render :partial => "github/collaborator", :collection => collaborators %>
+      </ul>
+    </div>
+    <div class="margin-bottom-20">
+      <h2>Branches</h2>
+      <ul>
+        <%= render :partial => "github/branch", :collection => @branches %>
       </ul>
     </div>
     <%= render :partial => "shared/report_form", :locals => {:report_for => "github"} %>
