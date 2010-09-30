@@ -3,7 +3,7 @@ require 'pivotal_tracker/project'
 
 describe Report, "Test the report generation for pivotal tracker reports" do
   
-  def get_valid_token_with_correct_login_and_password(login = "aashish@sapnasolutions.com", password = "n33d2c0nf!rm")
+  def get_valid_token_with_correct_login_and_password(login = "", password = "")
     @token = PivotalTracker::Token.get_token(login, password)
   end
   
@@ -32,7 +32,7 @@ describe Report, "Test the report generation for pivotal tracker reports" do
   it "should be valid" do
     report = Report.new({:report => {:from => "09-01-2010", :to => "09-03-2010"}}, 
                         {  :pivotal_tracker_username => "sapnasolutions", 
-                           :pivotal_tracker_token => "21d89d777863caa9fa4ae80b14a1d70e", 
+                           :pivotal_tracker_token => "asdghfkj", 
                            :pivotal_tracker_project_id => "someid"
                         })
     report.should be_valid
