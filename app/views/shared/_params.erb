@@ -1,0 +1,4 @@
+<% form_tag "/#{source}/reports", :method => :post do %>
+  <%= render :partial => "shared/param", :locals => {:params => params, :source => source}%>
+  <%= submit_tag "Export to XLS"%>
+<% end %>

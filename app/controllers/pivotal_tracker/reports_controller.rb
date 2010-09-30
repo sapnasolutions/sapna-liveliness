@@ -20,7 +20,7 @@ class PivotalTracker::ReportsController < PivotalTracker::BaseController
           page.replace_html("pivotal-content", render(:partial => "pivotal_tracker/reports/activities"))
           page.insert_html(:top, "pivotal-content", 
             content_tag(:div, :class => "right", :id => "pivotal_export_report") do 
-              button_to("Export to XLS", "/pivotal_tracker/report", :method => :post, :format => "xls", :params => params, :remote => true, :disable_with => "Please wait...") 
+              button_to("Export to XLS", :controller => "/pivotal_tracker/reports", :method => :post, :format => "xls", :params => params.inspect, :disable_with => "Please wait...") 
             end
           )
           page.insert_html(:after, "pivotal_export_report", content_tag(:div, '', :class => "clear"))

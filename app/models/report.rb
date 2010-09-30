@@ -4,9 +4,11 @@ class Report
     
   attr_reader :params, :session
   
-  def initialize(params, session)
+  def initialize(params = {}, session = {})
     @params = params
     @session = session
+    @errors = []
+    validate
   end
   
   def generate
@@ -17,7 +19,29 @@ class Report
     filtered_activities = filter_activities(activities, members)
   end
   
+  def errors
+    @errors
+  end
+  
+  def valid?
+    @errors.blank?
+  end
+  
+  #######
   private
+  #######
+  
+  def validate
+    add_errors("Login can't be blank.") if @session.blank? || @session[:pivotal_tracker_username].blank?
+    add_errors("API Token can't be blank.") if @session.blank? || @session[:pivotal_tracker_token].blank?
+    add_errors("Project can't be blank.") if @session.blank? || @session[:pivotal_tracker_project_id].blank?
+    add_errors("Please select a valid date range for the report.") if @params[:report].blank? || (@params[:report].present? && (@params[:report][:from].blank? || @params[:report][:to].blank?)) 
+  end
+  
+  def add_errors(error)
+    @errors << error
+    @errors.flatten!
+  end
   
   def check_date_interval
     start_date  = get_date_from_string(@params[:report][:from])

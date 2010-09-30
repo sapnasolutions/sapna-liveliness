@@ -1,7 +1,15 @@
 <% if @commits.present? %>
-  <ul>
+  <table>
+    <th colspan="3">Activities of '<%= @repository.name %>' repo</th>
     <%= render :partial => "github/reports/commit", :collection => @commits %>
-  </ul>
+  </table>
 <% else %>
-  <div>No results for the selected criteria.</div>
+  <h2>Activities of '<%= @repository.name %>' repo</h2>
+  <ul><li>No activities for the selected criteria. To modify the report criteria, <%= 
+    link_to_remote "click here", 
+    :url => collaborators_github_repository_path(:id => session[:github_repository_name]),
+    :loading => "$('github-content').toggle(); $('repository_#{session[:github_repository_name]}_menu_spinner').show(); $('repository_#{session[:github_repository_name]}_menu_link').hide()", 
+    :complete => "$('github-content').toggle(); $('repository_#{session[:github_repository_name]}_menu_spinner').hide(); $('repository_#{session[:github_repository_name]}_menu_link').show()", 
+    :method => :get, 
+    :html => {:id => "repository_#{session[:github_repository_name]}_menu_link"} %><%= image_tag "indicators/small.gif", :id => "repository_#{session[:github_repository_name]}_menu_spinner", :style => "display:none;" %>.</li></ul>
 <% end %>

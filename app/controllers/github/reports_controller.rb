@@ -9,19 +9,19 @@ class Github::ReportsController < Github::BaseController
       format.js do
         render :update do |page|
           page.replace_html("github-content", render(:partial => "github/reports/commits"))
-          # page.insert_html(:top, "pivotal-content", 
-          #             content_tag(:div, :class => "right", :id => "pivotal_export_report") do 
-          #               button_to("Export to XLS", "/pivotal_tracker/report", :method => :post, :format => "xls", :params => params, :remote => true, :disable_with => "Please wait...") 
-          #             end
-          #           )
-          # page.insert_html(:after, "pivotal_export_report", content_tag(:div, '', :class => "clear"))
+          # page.insert_html(:top, "github-content", 
+          #                       content_tag(:div, :class => "right", :id => "github_export_report") do 
+          #                         button_to("Export to XLS", {:controller => "github/reports", :action => :create, :format => "xls", :params => params}, :method => :post, :disable_with => "Please wait...") 
+          #                       end
+          #                     )
+          #           page.insert_html(:after, "github_export_report", content_tag(:div, '', :class => "clear"))
         end
       end
       format.xls do
         headers['Content-Type'] = "application/vnd.ms-excel"
-        headers['Content-Disposition'] = 'attachment; filename="sapna_liveliness_pivotal_tracker_activity_for_' + @project.name + '_' + Time.now.strftime("%Y-%m-%d_%H:%M:%S").to_s + '.xls"'
+        headers['Content-Disposition'] = 'attachment; filename="sapna_liveliness_github_commits_for_' + @repository.name + '_' + Time.now.strftime("%Y-%m-%d_%H:%M:%S").to_s + '.xls"'
         headers['Cache-Control'] = ''
-        render :partial => "/pivotal_tracker/reports/activities"
+        render :partial => "/github/reports/commits"
       end
     end
   end

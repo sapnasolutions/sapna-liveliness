@@ -1,1 +1,5 @@
-<li><%= commit.committed_date.strftime("%d-%m-%y") %>: <%= commit.message%> <%=commit.author.name%>(<%= commit.author.login %>)</li>
+<tr>
+  <td><%= Date.parse(commit.committed_date) %></td>
+  <td><%= commit.message%></td>
+  <td><%=commit.author.name%>(<%= commit.author.login %>)</td>
+</tr>

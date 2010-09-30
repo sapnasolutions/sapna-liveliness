@@ -1,0 +1,7 @@
+<% for k,v in params %>
+  <% if k.is_a? Hash %>
+    <%= render :partial => "shared/params", :locals => {:source => source, :params => k} %>
+  <% else %>
+    <%= hidden_field_tag k, v %>
+  <% end %>
+<% end %>

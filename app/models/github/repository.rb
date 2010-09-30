@@ -54,7 +54,7 @@ module Github
         end
         commits.flatten!
         commits = commits.select{|commit| emails.include?(commit.author.email) || params[:github][:users].include?(commit.author.login)}
-        commits = commits.select{|commit| commit.committed_date >= start_date && commit.committed_date <= end_date}
+        commits = commits.select{|commit| Date.parse(commit.committed_date) >= start_date && Date.parse(commit.committed_date) <= end_date}
       rescue Exception => e
         RAILS_DEFAULT_LOGGER.error e.message
       end
