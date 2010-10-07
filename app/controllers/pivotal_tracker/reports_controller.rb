@@ -35,4 +35,7 @@ class PivotalTracker::ReportsController < PivotalTracker::BaseController
     end
   end
   
+  def merged_report
+  end
+  
 end

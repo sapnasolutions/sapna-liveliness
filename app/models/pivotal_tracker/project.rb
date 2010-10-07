@@ -1,5 +1,6 @@
 require 'pivotal_tracker/base'
 
+
 module PivotalTracker
   class Project < PivotalTracker::Base  
     self.site = PivotalTracker::BASE_REST_URL
@@ -24,8 +25,7 @@ module PivotalTracker
     end
     
     def activities(occurred_since_date = Time.now)
-      options = {:project_id => self.id, :limit => 100, :occurred_since_date => occurred_since_date}
-      base_find(PivotalTracker::Activity, :all, options)
+      
     end
 
   private

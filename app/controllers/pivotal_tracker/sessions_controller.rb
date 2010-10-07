@@ -15,6 +15,7 @@ class PivotalTracker::SessionsController < PivotalTracker::BaseController
       if @token.present?
         session[:pivotal_tracker_token] = @token
         session[:pivotal_tracker_username] = params[:pivotal_tracker][:login]
+        session[:pivotal_tracker_password] = params[:pivotal_tracker][:password]
         page.replace_html("pivotal-content", :partial => "pivotal_tracker/projects/projects")
       else
         flash.now[:error] = "Pivotal Tracker could not authenticate you with the credentials provided. Please try again."

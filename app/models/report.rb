@@ -1,4 +1,5 @@
 require 'pivotal_tracker/project'
+include ScrapePivotalTracker
 
 class Report
     
@@ -15,7 +16,7 @@ class Report
     (start_date, end_date) = check_date_interval
     project = get_project
     members = get_members(project)
-    activities = get_activities(start_date, end_date, project)
+    activities = get_activities(start_date, end_date, project.id)
     filtered_activities = filter_activities(activities, members)
   end
   
@@ -63,15 +64,15 @@ class Report
     project.activities(date)
   end
 
-  def get_activities(start_date, end_date, project)
-    activities = []
-    start_date.to_date.upto(end_date.to_date) do |date| 
-      activities << get_activity_for(project, date)
-      activities.flatten!
-      activities.uniq!
-    end
-    return activities
-  end
+  # def get_activities(start_date, end_date, project)
+  #   activities = []
+  #   start_date.to_date.upto(end_date.to_date) do |date| 
+  #     activities << get_activity_for(project, date)
+  #     activities.flatten!
+  #     activities.uniq!
+  #   end
+  #   return activities
+  # end
   
   def filter_activities(list, members)
     member_names = members.collect(&:name)

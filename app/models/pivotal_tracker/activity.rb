@@ -1,17 +1,11 @@
-require 'pivotal_tracker/base'
+#require 'pivotal_tracker/base'
 
 module PivotalTracker
-  class Activity < PivotalTracker::Base  
-    attr_accessor :project_id
+  class Activity #< PivotalTracker::Base  
+    attr_accessor :project_id, :author, :title, :activity_type, :occurred_at
   
-    self.site = PivotalTracker::BASE_REST_URL + "/projects/:project_id"  
-    
-    def type
-      attributes["event_type"]      
-    end
-    
-    def author
-      attributes["author"]
+    def initialize(author, occurred_at, title, activity_type, project_id = nil)
+      @project_id, @author, @title, @activity_type, @occurred_at = project_id, author, title, activity_type, occurred_at
     end
     
   end
