@@ -12,19 +12,27 @@
         <h1><%= link_to "Liveliness", root_path %></h1>
         <h4>beta</h4>
       </div>
+      <div id="merged_report" class="merged_report_button">
+        <%= get_merged_report_button %>
+      </div>
+      <div class="clear"></div>
       <div id="messages">
         <%= render :partial => "/layouts/messages" %>
       </div>
     </div>
     <div id="main-content">
-      <div class="box left" id="pivotal-main">
-        <%= render :partial => "/pivotal_tracker/menu" %>        
-        <div id="pivotal-content"></div>
-      </div>
-      <div class="box right" id="github-main">
-        <%= render :partial => "/github/menu" %>
-        <div id="github-content"></div>
-      </div>
+      <% unless @no_separate_divs %>
+        <div class="box left" id="pivotal-main">
+          <%= render :partial => "/pivotal_tracker/menu" %>        
+          <div id="pivotal-content"></div>
+        </div>
+        <div class="box right" id="github-main">
+          <%= render :partial => "/github/menu" %>
+          <div id="github-content"></div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
       <div class="clear">
     </div>
     <div id="footer">

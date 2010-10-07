@@ -16,15 +16,47 @@ a {
     color: #fff;
     background: #f00; }
 
+#header{
+  border-bottom: 3px solid red;
+  margin: 0 auto;
+  width: 900px;
+}
+
 #header #main-header{
   width: 335px;
-  margin: auto;
   font-family: "Trebuchet MS"; 
+  float: left;
 }
 #main-header h1 {
   padding-top: 20px;
-  font-size: 600%; 
+  font-size: 600%;
 }
+
+#merged_report{
+  font-family: "Trebuchet MS"; 
+  font-size: 300%;
+  float: right;
+  margin-top: 77px;
+}
+
+.merged-report.report-form{
+  margin: 30px auto;
+}
+
+.merged-report{
+  width: 300px;
+  margin-top: 30px auto;
+}
+
+.merged-report h2{
+  font-size: 200%;
+}
+
+.merged-report label{
+  min-width: 150px;
+}
+
+
 
 #header #main-header h1 a {
   color: #000; 
@@ -113,7 +145,7 @@ a {
   border-bottom: 1px solid #ddd;
 }
 
-.login-form h1, report-form h1{
+.login-form h1, report-form h1, merged-report h1{
   text-align: center;
 }
 

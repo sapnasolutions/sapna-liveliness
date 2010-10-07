@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
     github.resources :reports, :only => [:create]
     github.collaborators_github_repository 'repositories/:id/collaborators', :controller => "repositories",  :action => "collaborators" 
   end
+  
+  map.merged_report 'merged_report', :controller => :merged_report, :action => :new
       
   map.root :controller => :home
 end
