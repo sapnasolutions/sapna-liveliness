@@ -1,9 +1,10 @@
 require 'mechanize'
 module ScrapePivotalTracker 
   
-  def create_activity(ary, row)
+  def create_activity(ary, row, title)
     author = (ary[0..1]).join(" ")
     action = (ary - ary[0..1]).join(" ")
+    action += "(#{title})"
     activity_type = ary[2]
     activity = PivotalTracker::Activity.new(author, Time.parse(row.search("td[@class='progress_command_date']/text()").to_s), action, activity_type)
     activity
@@ -44,7 +45,7 @@ module ScrapePivotalTracker
       state  = story.search("span[@class='progress_story_state']/text()").to_s
       for row in story.search("table//tr")
         ary = row.search("td[@class='progress_command_description']/text()").to_s.split(" ")
-        activity = create_activity(ary, row).to_a
+        activity = create_activity(ary, row, title).to_a
         activities << activity
       end
     end

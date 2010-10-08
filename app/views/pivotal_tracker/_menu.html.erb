@@ -15,7 +15,7 @@
     <li id="pivotal_menu_projects">
       <%= link_to_remote "Projects", 
         :url => pivotal_tracker_projects_path,
-        :loading => "$('pivotal-content').toggle(); $('projects_menu_spinner').show(); $('pivotal_projects_menu_link').hide()", 
+        :loading => "Element.update('merged_report', ''); $('pivotal-content').toggle(); $('projects_menu_spinner').show(); $('pivotal_projects_menu_link').hide()", 
         :complete => "$('pivotal-content').toggle(); $('projects_menu_spinner').hide(); $('pivotal_projects_menu_link').show()", 
         :method => :get, 
         :html => {:id => "pivotal_projects_menu_link"} %><%= image_tag "indicators/small.gif", :id => "projects_menu_spinner", :style => "display:none;" %></li>
@@ -23,7 +23,7 @@
     <li id="pivotal_menu_logout">
       <%= link_to_remote "Logout", 
         :url => pivotal_tracker_session_path(1),
-        :loading => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
+        :loading => "Element.update('merged_report', ''); $('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
         :complete => "$('pivotal-content').toggle(); $('pivotal_logout_spinner').toggle(); $('pivotal_logout_menu_link').toggle()", 
         :method => :delete, 
         :html => {:id => "pivotal_logout_menu_link"} %><%= image_tag "indicators/small.gif", :id => "pivotal_logout_spinner", :style => "display:none;" %>

@@ -14,7 +14,7 @@
     <% end %>
     <li id="github_menu_projects">
       <%= link_to_remote "Projects", :url => github_repositories_path, :method => :get, 
-        :loading => "$('github-content').toggle(); $('github_projects_menu_spinner').show(); $('github_projects_menu_link').hide()", 
+        :loading => "Element.update('merged_report', ''); $('github-content').toggle(); $('github_projects_menu_spinner').show(); $('github_projects_menu_link').hide()", 
         :complete => "$('github-content').toggle(); $('github_projects_menu_spinner').hide(); $('github_projects_menu_link').show()",
         :html => {:id => "github_projects_menu_link"} %>
       <%= image_tag "indicators/small.gif", :id => "github_projects_menu_spinner", :style => "display:none;" %>
@@ -23,7 +23,7 @@
     <li id="github_menu_logout">
       <%= link_to_remote "Logout", 
         :url => github_session_path(1),
-        :loading => "$('github-content').toggle(); $('github_logout_spinner').show(); $('github_logout_menu_link').hide()", 
+        :loading => "Element.update('merged_report', ''); $('github-content').toggle(); $('github_logout_spinner').show(); $('github_logout_menu_link').hide()", 
         :complete => "$('github-content').toggle(); $('github_logout_spinner').hide(); $('github_logout_menu_link').show()", 
         :method => :delete, 
         :html => {:id => "github_logout_menu_link"} %><%= image_tag "indicators/small.gif", :id => "github_logout_spinner", :style => "display:none;" %>

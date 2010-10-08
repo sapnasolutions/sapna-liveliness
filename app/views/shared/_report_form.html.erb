@@ -8,9 +8,11 @@
     <%= label report_for, :to %>
     <%= text_field_tag "report[to]", "", :class => "datepicker" %>
   <div>
-  <div>
-    <%= submit_tag "Generate", :id => "#{report_for}_report_submit" %>
-    <%= image_tag "indicators/small.gif", :id => "#{report_for}_report_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
-  </div>
+  <% unless @no_submit %>
+    <div>
+      <%= submit_tag "Generate", :id => "#{report_for}_report_submit" %>
+      <%= image_tag "indicators/small.gif", :id => "#{report_for}_report_spinner", :style => "display:none; margin-right: 10px; margin-top: 10px;", :class => "right" %>
+    </div>
+  <% end %>
   <div class="clear"></div>
 </div>

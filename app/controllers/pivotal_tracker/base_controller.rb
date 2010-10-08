@@ -9,13 +9,6 @@ class PivotalTracker::BaseController < ApplicationController
   
   def load_projects(token)
     PivotalTracker::Project.all(token)
-  end  
-  
-  def load_project
-    if session[:pivotal_tracker_token] and params[:project_id]
-      @projects = PivotalTracker::Project.all(session[:pivotal_tracker_token]) 
-      @project = @projects.select{|x| x.id == params[:project_id]}.first
-    end
   end
   
   def load_member

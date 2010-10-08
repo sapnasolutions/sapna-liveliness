@@ -1,0 +1,23 @@
+<table class="activity-date-group">
+  <% for key in @activities.keys %>
+    <tr>
+      <td class="border-bottom"><%= key %></td>
+      <td class="border-bottom">
+        <% for a in @activities[key]%>
+          <% css_class = (a.class.to_s == "PivotalTracker::Activity" ? "tracker-activity" : "github-activity") %>
+          <table>
+            <tr>
+              <% if css_class == "tracker-activity" %>
+                <td><%= a.author %></td>
+                <td class="<%= css_class %>"><%= a.title %></td>
+              <% else %>
+                <td><%= a.author.name %></td>
+                <td class="<%= css_class %>"><%= a.message%></td>
+              <% end %>
+            </tr>
+          </table>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

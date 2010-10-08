@@ -21,7 +21,7 @@ class Github::SessionsController < Github::BaseController
   end
   
   def destroy
-    session[:github_credentials] = nil
+    session[:github_credentials], session[:github_repository_name], session[:github_collaborator_name] = nil
     render :update do |page|
       page.replace_html "github_menu", :partial => "github/menu"
       page.replace_html "messages", :partial => "/layouts/messages"

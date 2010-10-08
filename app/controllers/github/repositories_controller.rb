@@ -18,6 +18,7 @@ class Github::RepositoriesController < Github::BaseController
       session[:github_repository_name], session[:github_collaborator_name] = @repository.name, nil
       render :update do |page|
         page.replace_html "github-content", render(:partial => '/github/collaborators', :locals => { :repository => @repository, :collaborators => load_collaborators(@repository) })
+        page.replace_html "merged_report", get_merged_report_button
         page.call("createPickers")
       end
     else

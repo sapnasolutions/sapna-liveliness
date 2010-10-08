@@ -8,7 +8,7 @@ module ApplicationHelper
   
   def get_merged_report_button
     if (params[:controller].present? && params[:controller] == "merged_report") || (session[:github_repository_name].present? && session[:pivotal_tracker_project_id].present?)
-      link_to "Merged report", merged_report_path
+      link_to "Merged report", new_merged_report_path
     end
   end
   

@@ -10,6 +10,7 @@ class PivotalTracker::MembersController < PivotalTracker::BaseController
     render :update do |page|
       page.replace_html("pivotal-content", render(:partial => "/pivotal_tracker/members/members"))
       page.replace("pivotal_tracker_menu", render(:partial => "/pivotal_tracker/menu"))
+      page.replace_html "merged_report", get_merged_report_button
       page.call("createPickers")
     end
   end

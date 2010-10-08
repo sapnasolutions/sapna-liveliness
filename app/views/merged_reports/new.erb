@@ -1,0 +1,19 @@
+<% form_tag merged_report_path do %>
+  <div class="members-and-collaborators">
+    <div id="tracker-members">
+      <h2>Select Tracker members</h2>
+      <div><%= render :partial => "/pivotal_tracker/members/member", :collection => @members %></div>
+    </div>
+    <div id="github-collaborators">
+      <h2>Select Github collaborators</h2>
+      <div><%= render :partial => "github/collaborator", :collection => @collaborators %></div>
+      <h2>And Branches</h2>
+      <ul>
+        <%= render :partial => "github/branch", :collection => @branches %>
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="merged-report report-form"><%= render :partial => "/shared/report_form", :locals => {:report_for => "merged_report"} %></div>
+  <%= submit_tag "Generate!"%>
+<% end %>
