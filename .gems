@@ -1,1 +1,2 @@
 hpricot --version '>= 0.8.2'
+mechanize --version '>= 1.0.0'
